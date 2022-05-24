@@ -1,0 +1,145 @@
+body {
+  font-family: "Odibee Sans", cursive;
+}
+
+#geral {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+div#calculadora {
+  width: 340px;
+  height: 430px;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  display: block;
+  float: left;
+  background: #28292b;
+  color: #8c7a5a;
+  font-size: 12px;
+}
+
+#calculadora > h1 {
+  color: #fff;
+  font-size: 9px;
+  letter-spacing: 2px;
+}
+
+.calcHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.placasSolares {
+  width: 20px;
+  height: 30px;
+  background-color: #695b58;
+  border: 1px solid #867973;
+  display: table-cell;
+}
+
+div#visor {
+  background-color: #55584d;
+  height: 55px;
+  margin: 5px 10px;
+  border: 10px solid #c6c6c6;
+  border-radius: 3px;
+  box-shadow: inset 0 0 1.2em #38383b;
+}
+
+#area-botoes {
+  background-color: #3e3d4d;
+  height: 265px;
+  border-top: 10px solid #ccc;
+  margin-top: 16px;
+  border-radius: 0 0 30px 30px;
+  box-shadow: inset 0 0 4.2em #292a2c;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.btn-lateral-esquerda {
+  width: 50px;
+}
+
+.btn-operadores {
+  display: flex;
+}
+
+button {
+  width: 50px;
+  height: 35px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 2px;
+}
+
+#btnSomar {
+  height: 70px;
+}
+
+button.btnOn {
+  background-color: #d3002d;
+  color: white;
+  font-weight: 800;
+}
+
+button.btnCe {
+  background-color: #f0a606;
+  color: white;
+  font-weight: 800;
+}
+
+.btn-numericos > button {
+  background-color: black;
+  color: white;
+  border: 1px solid #212121;
+}
+
+.btn-numericos > button:hover {
+  background-color: grey;
+  transition-duration: 0.47s;
+}
+
+.btn-numericos {
+  margin: 2px;
+}
+
+#visor {
+  background-color: #55584d;
+  height: 55px;
+  margin: 5px 10px;
+  border: 10px solid #c6c6c6;
+  border-radius: 3px;
+  box-shadow: inset 0 0 1.2em #38383b;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.opAnt {
+  font-size: 16px;
+  color: #828287;
+}
+
+.opAtual {
+  font-size: 42px;
+  color: #a6a6a8;
+}
+
+.dataHora {
+  display: grid;
+  align-content: space-between;
+  justify-content: start;
+  padding: 12px 10px;
+  color: #1d1d1c;
+  font-size: 16px;
+}/*# sourceMappingURL=calc.css.map */
