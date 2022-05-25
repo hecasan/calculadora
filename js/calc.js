@@ -1,16 +1,29 @@
-const operacaoAnterior = document.querySelector("#operacaoAnterior");
+const operacaoAnteriorDigitada = document.querySelector("#operacaoAnterior");
 
-const operacaoAtual = document.querySelector("#operacaoAtual");
+const operacaoAtualDigitada = document.querySelector("#operacaoAtual");
 
 const buttons = document.querySelectorAll("#area-botoes button");
 
-class Calculadora {}
+class Calculadora {
+  // Vamos criar um contrutor para a nossa classe Calculadora
+  // e vamos iniciar no argumento do contrutor a operação anterior digitada e também a operação atual digitada
+  constructor(operacaoAnteriorDigitada, operacaoatualDigitada) {
+    // E criar as propriedades de inicialização da calculadora
+    this.operacaoAnteriorDigitada = operacaoAnteriorDigitada;
+    this.operacaoatualDigitada = operacaoatualDigitada;
+    // e vamos criar uma propriedade com valor vazio para inicar a calculadora
+    this.atualOperacao = "";
+  }
+}
+
+// Vamos criar uma nova instancia da Calculadora
+const calc = new Calculadora(operacaoAnteriorDigitada, operacaoAtualDigitada);
 
 // adicionar eventos nos botões
 buttons.forEach((btn) => {
   // dentro de cada botão, adiciono um evento de click
   btn.addEventListener("click", (e) => {
-    // pego o texto do botão que o evento gerou aoi ser clicado
+    // pego o texto do botão que o evento gerou ao ser clicado
     const valorBtn = e.target.innerText;
 
     // Verifico se o que digitei é um número ou um operador
