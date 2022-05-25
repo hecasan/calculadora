@@ -28,14 +28,34 @@ class Calculadora {
 
   // Processar todas as operações de calculos
   processarOperacao(operacao) {
+    // Verificar se o valor atual está vazio
+    if (this.operacaoatualDigitada === "") {
+      // Mudar operação
+      if (this.operacaoAnteriorDigitada !== "") {
+        this.mudarOperacao(operacao);
+      }
+      return;
+    }
     // Pegar o valor atual e o valor anterior digitado
     let operacaoEscolhida;
-    const anterior = +this.operacaoAnteriorDigitada.innerText;
+    const anterior = +this.operacaoAnteriorDigitada.innerText.split(" ")[0];
     const atual = +this.operacaoatualDigitada.innerText;
 
     switch (operacao) {
       case "+":
         operacaoEscolhida = anterior + atual;
+        this.atualizarTelaCalc(operacaoEscolhida, operacao, atual, anterior);
+        break;
+      case "-":
+        operacaoEscolhida = anterior - atual;
+        this.atualizarTelaCalc(operacaoEscolhida, operacao, atual, anterior);
+        break;
+      case "X":
+        operacaoEscolhida = anterior * atual;
+        this.atualizarTelaCalc(operacaoEscolhida, operacao, atual, anterior);
+        break;
+      case ":":
+        operacaoEscolhida = anterior / atual;
         this.atualizarTelaCalc(operacaoEscolhida, operacao, atual, anterior);
         break;
 
@@ -62,6 +82,15 @@ class Calculadora {
       this.operacaoAnteriorDigitada.innerText = `${operacaoEscolhida} ${operacao}`;
       this.operacaoatualDigitada.innerText = "";
     }
+  }
+
+  // Método para mudar a operação da calculadora
+  mudarOperacao(operacao) {
+    const calculosMatematicos = ["X", ":", "+", "-"];
+    if (!calculosMatematicos.includes(operacao)) {
+      return;
+    }
+    this.operacaoAnteriorDigitada.innerText.slice(0, -1) + operacao;
   }
 }
 
