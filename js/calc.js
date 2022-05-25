@@ -14,6 +14,18 @@ class Calculadora {
     // e vamos criar uma propriedade com valor vazio para inicar a calculadora
     this.atualOperacao = "";
   }
+
+  //vamos criar um métod para adicionar um dígito
+  addDigito(digito) {
+    // console.log(digito);
+    // Colocar o dígito no visor
+    this.atualOperacao = digito;
+    this.atualizarTelaCalc();
+  }
+
+  atualizarTelaCalc() {
+    this.operacaoatualDigitada.innerText += this.atualOperacao;
+  }
 }
 
 // Vamos criar uma nova instancia da Calculadora
@@ -24,13 +36,13 @@ buttons.forEach((btn) => {
   // dentro de cada botão, adiciono um evento de click
   btn.addEventListener("click", (e) => {
     // pego o texto do botão que o evento gerou ao ser clicado
-    const valorBtn = e.target.innerText;
+    const value = e.target.innerText;
 
     // Verifico se o que digitei é um número ou um operador
-    if (+valorBtn >= 0 || valorBtn === ".") {
-      console.log(valorBtn);
+    if (+value >= 0 || value === ".") {
+      calc.addDigito(value);
     } else {
-      console.log("operador: " + valorBtn);
+      console.log("operador: " + value);
     }
   });
 });
