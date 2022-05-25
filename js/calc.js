@@ -4,6 +4,9 @@ const operacaoAtualDigitada = document.querySelector("#operacaoAtual");
 
 const buttons = document.querySelectorAll("#area-botoes button");
 
+var btnLigaDesliga = document.querySelector("#btn-OnOff");
+btnLigaDesliga.innerHTML = "OFF";
+
 class Calculadora {
   // Vamos criar um contrutor para a nossa classe Calculadora
   // e vamos iniciar no argumento do contrutor a operação anterior digitada e também a operação atual digitada
@@ -54,9 +57,25 @@ class Calculadora {
         operacaoEscolhida = anterior * atual;
         this.atualizarTelaCalc(operacaoEscolhida, operacao, atual, anterior);
         break;
-      case ":":
+      case "÷":
         operacaoEscolhida = anterior / atual;
         this.atualizarTelaCalc(operacaoEscolhida, operacao, atual, anterior);
+        break;
+      case "√":
+        operacaoEscolhida = Math.sqrt(anterior);
+        this.atualizarTelaCalc(operacaoEscolhida, operacao, atual, anterior);
+        break;
+      case "=":
+        this.resultadoOperacao();
+        break;
+      case "C":
+        this.zerarOperacao();
+        break;
+      case "←":
+        this.removerUltimoDigito();
+        break;
+      case "CE":
+        this.removerUltimaEntrada();
         break;
 
       default:
@@ -91,6 +110,23 @@ class Calculadora {
       return;
     }
     this.operacaoAnteriorDigitada.innerText.slice(0, -1) + operacao;
+  }
+
+  resultadoOperacao() {
+    const opercao = operacaoAnteriorDigitada.innerText.split(" ")[1];
+    this.processarOperacao(opercao);
+  }
+
+  zerarOperacao() {
+    this.operacaoAnteriorDigitada.innerText = "";
+    this.operacaoatualDigitada.innerText = "";
+  }
+  removerUltimoDigito() {
+    this.operacaoatualDigitada.innerText =
+      this.operacaoatualDigitada.innerText.slice(0, -1);
+  }
+  removerUltimaEntrada() {
+    this.operacaoatualDigitada.innerText = "";
   }
 }
 
