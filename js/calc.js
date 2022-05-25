@@ -17,14 +17,51 @@ class Calculadora {
 
   //vamos criar um métod para adicionar um dígito
   addDigito(digito) {
-    // console.log(digito);
+    // Verificar se no visor já tem um . (ponto)
+    if (digito === "." && this.operacaoatualDigitada.innerText.includes(".")) {
+      return;
+    }
     // Colocar o dígito no visor
     this.atualOperacao = digito;
     this.atualizarTelaCalc();
   }
 
-  atualizarTelaCalc() {
-    this.operacaoatualDigitada.innerText += this.atualOperacao;
+  // Processar todas as operações de calculos
+  processarOperacao(operacao) {
+    // Pegar o valor atual e o valor anterior digitado
+    let operacaoEscolhida;
+    const anterior = +this.operacaoAnteriorDigitada.innerText;
+    const atual = +this.operacaoatualDigitada.innerText;
+
+    switch (operacao) {
+      case "+":
+        operacaoEscolhida = anterior + atual;
+        this.atualizarTelaCalc(operacaoEscolhida, operacao, atual, anterior);
+        break;
+
+      default:
+        return;
+    }
+  }
+
+  atualizarTelaCalc(
+    operacaoEscolhida = null,
+    operacao = null,
+    atual = null,
+    anterior = null
+  ) {
+    console.log(operacaoEscolhida, operacao, atual, anterior);
+    if (operacaoEscolhida === null) {
+      this.operacaoatualDigitada.innerText += this.atualOperacao;
+    } else {
+      // Checar se o valor é zero. Se for, apenas add o valor atual
+      if (anterior === 0) {
+        operacaoEscolhida = atual;
+      }
+      // Add o valor atual para cima da calculadora como valor anterior
+      this.operacaoAnteriorDigitada.innerText = `${operacaoEscolhida} ${operacao}`;
+      this.operacaoatualDigitada.innerText = "";
+    }
   }
 }
 
@@ -42,7 +79,7 @@ buttons.forEach((btn) => {
     if (+value >= 0 || value === ".") {
       calc.addDigito(value);
     } else {
-      console.log("operador: " + value);
+      calc.processarOperacao(value);
     }
   });
 });
